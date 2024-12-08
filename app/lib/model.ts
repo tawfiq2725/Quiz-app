@@ -12,12 +12,24 @@ export interface QuizDocument extends Document {
 }
 
 const quizSchema = new Schema<QuizDocument>({
-  category: { type: String, required: true },
+  category: {
+    type: String,
+    required: true,
+  },
   questions: [
     {
-      question: { type: String, required: true },
-      options: { type: [String], required: true },
-      correctAnswer: { type: String, required: true },
+      question: {
+        type: String,
+        required: true,
+      },
+      options: {
+        type: [String],
+        required: true,
+      },
+      correctAnswer: {
+        type: String,
+        required: true,
+      },
     },
   ],
 });
