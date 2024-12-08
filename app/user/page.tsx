@@ -13,10 +13,10 @@ export default function HomePage() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("/api/user"); // Endpoint to fetch categories
+        const response = await fetch("/api/user");
         if (response.ok) {
           const data: string[] = await response.json();
-          setCategories(data); // Set categories from the server
+          setCategories(data);
         } else {
           console.error("Failed to fetch categories");
         }
@@ -59,6 +59,7 @@ export default function HomePage() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            autoComplete="off"
           />
         </div>
         <div className="mb-6">
@@ -76,7 +77,7 @@ export default function HomePage() {
             required
           >
             <option value="">Select a category</option>
-            {/* Map over categories fetched from the database */}
+
             {categories.map((cat, index) => (
               <option key={index} value={cat}>
                 {cat}

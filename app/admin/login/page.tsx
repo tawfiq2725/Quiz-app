@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
@@ -20,11 +20,11 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const adminEmail = "admin";
+    const adminUsername = "admin001";
     const adminPassword = "password";
 
-    if (email === adminEmail && password === adminPassword) {
-      localStorage.setItem("admin-authenticated", "true"); // Save authentication status
+    if (username === adminUsername && password === adminPassword) {
+      localStorage.setItem("admin-authenticated", "true");
       router.push("/admin/dashboard");
     } else {
       setError("Invalid credentials, please try again.");
@@ -48,13 +48,13 @@ const Login = () => {
               htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
-              Email
+              Username
             </label>
             <input
               type="text"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              id="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="w-full px-3 py-2 mt-1 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300"
               required
               autoComplete="off"
