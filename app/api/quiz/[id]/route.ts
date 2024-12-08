@@ -5,12 +5,16 @@ import Quiz from "@/app/lib/model";
 // Ensure DB is connected
 connectDb();
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+type RouteContext = {
+  params: {
+    id: string;
+  };
+};
+
+export async function GET(req: NextRequest, context: RouteContext) {
+  const { id } = context.params;
   try {
-    const quiz = await Quiz.findById(params.id);
+    const quiz = await Quiz.findById(id);
     if (!quiz) {
       return NextResponse.json({ error: "Quiz not found" }, { status: 404 });
     }
@@ -24,15 +28,11 @@ export async function GET(
   }
 }
 
-export async function PUT(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PUT(req: NextRequest, context: RouteContext) {
+  const { id } = context.params;
   try {
     const data = await req.json();
-    const updatedQuiz = await Quiz.findByIdAndUpdate(params.id, data, {
-      new: true,
-    });
+    const updatedQuiz = await Quiz.findByIdAndUpdate(id, data, { new: true });
     if (!updatedQuiz) {
       return NextResponse.json({ error: "Quiz not found" }, { status: 404 });
     }
