@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function HomePage() {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
-  const [categories, setCategories] = useState<string[]>([]); // State to hold categories
+  const [categories, setCategories] = useState<string[]>([]);
   const router = useRouter();
 
   // Fetch categories from the server on component mount
